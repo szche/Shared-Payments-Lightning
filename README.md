@@ -40,8 +40,19 @@ As per [BOLT #4](https://github.com/lightningnetwork/lightning-rfc/blob/master/0
 >
 >For the final node, this value MUST be exactly equal to the incoming htlc amount, otherwise the HTLC should be rejected.
 
-To my understang it's still possible to implement this with the current Lightning Implementations but might not be as elegant. My initial idea is to divide the payment into two parts: payment to the edge node and a normal HLTC invoice. 
+To my understang it's still possible to implement this with the current Lightning Implementations but might not be as elegant. My initial idea is to divide the payment into two parts: payment to the edge node and a normal invoice to the merchant. A rough idea has been shown below:
+![3.jpg](img/3.jpg)
+1. Both Alice and Bob ask Dolory to create an invoice for 1₿. Dolory creates it with randomly generated preimage and hands over the hash H 
+2. Bob creates an invoice for 0.55₿ with the same preimage hash H and hands it over to Alice.
 
-Upon receiving invoice from the merchant, the non-edge node should construct a HLTC with the edge node using the same preimage has as in the merchant's invoice. Once that's done, edge node knows that he will be able to claim the money if he fulfills the invoice with the merchant. That way the risk of edge node paying in full while the other node runs away is minimized.
 
-This I will leave to more experienced part of the community :-)
+**At this point if Alice locks the required amount, Bob knows that he can pay the 1₿ which consequently allows him to unlock Alice's HTLC.**
+
+&nbsp;&nbsp;&nbsp;&nbsp;3-6. Bob pays the invoice from 1. and receives the preimage.
+
+7. Bob sends the preimage to Alice and gets back half of the payed amount.
+
+You can think of it as **"invoice chaining"**, meaning that one payment can only be finalized if the other one has been paid.  
+
+
+While the less-elegant version looks like it would work just fine, it's **important to realize that there's still some trust involved**. If Bob and Dolory were to collude, they could easily steal Alice's funds. I'd still consider this as an inprovement over the system where you have to split the payment in two on the merchant side or when you front the money to someone. After all, in both of these scenarios you have to trust both the merchant and the other party - with my solution you only need to trust the merchant.
