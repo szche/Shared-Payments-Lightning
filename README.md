@@ -15,12 +15,15 @@ Similarly, what if the person that promises to match donations doesn't trust you
 Firstly, let's look at how a normal payment in the Lightning Network looks like.
 Alice wants to send Dolory some money but doesn't have a direct channel opened with her. She routes the payment through Bob and Carol - each of them earning a tiny amount as a routing fee.
 
+![1.jpg](img/1.jpg)
 
-Notice that with every hop, the payment amount is getting smaller and smaller?
+Notice that with every hop, the payment amount is getting smaller and smaller.
 
 **What if you could construct a payment that gets bigger and bigger with every hop?**
 
 Now let's say that Alice and Bob want to pay Dolory but agree to make it so each of them pay only half of the amount.
+
+![2.jpg](img/2.jpg)
 
 What's also interesing is the fact that payment confirmation on Alice's end also means that Bob payed his share. Bob or Alice can't lie about the state of their payment since it's directly connected with the payment of the other party. This non-equivocation property could possibly be used in decentralized trading application (shared liquidity pools?).
 
