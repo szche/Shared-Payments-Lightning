@@ -43,7 +43,7 @@ As per [BOLT #4](https://github.com/lightningnetwork/lightning-rfc/blob/master/0
 
 ### The solution 2.0
 
-To my understang it's still possible to implement this with the current Lightning Implementations but might not be as elegant. My initial idea is to divide the payment into two parts: payment to the edge node and a normal invoice to the merchant. A rough idea has been shown below:
+To my understang it's still possible to implement this with the current Lightning Implementations but might not be as elegant. My initial idea is to divide the payment into two parts: payment to the edge node (a node that sits at the border of the nodes sharing payment and the "normal" part of the network) and a normal invoice to the merchant. A rough idea has been shown below:
 ![3.jpg](img/3.jpg)
 1. Both Alice and Bob ask Dolory to create an invoice for 1₿. Dolory creates it with randomly generated preimage and hands over the hash H 
 2. Bob creates an invoice for 0.55₿ with the same preimage hash H and hands it over to Alice.
