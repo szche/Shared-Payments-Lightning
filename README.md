@@ -24,6 +24,7 @@ Notice that with every hop, the payment amount is getting smaller and smaller.
 Now let's say that Alice and Bob want to pay Dolory but agree to make it so each of them pay only half of the amount.
 
 ![2.jpg](img/2.jpg)
+Of course Bob should have the unencrypted version of the Lightning packet to be sure that Alice is not trying to send the money to herself.
 
 What's also interesing is the fact that payment confirmation on Alice's end also means that Bob payed his share. Bob or Alice can't lie about the state of their payment since it's directly connected with the payment of the other party. This non-equivocation property could possibly be used in decentralized trading application (shared liquidity pools?).
 
@@ -39,6 +40,8 @@ As per [BOLT #4](https://github.com/lightningnetwork/lightning-rfc/blob/master/0
 >Where fee is calculated according to the receiving peer's advertised fee schema (as described in BOLT #7).
 >
 >For the final node, this value MUST be exactly equal to the incoming htlc amount, otherwise the HTLC should be rejected.
+
+### The solution 2.0
 
 To my understang it's still possible to implement this with the current Lightning Implementations but might not be as elegant. My initial idea is to divide the payment into two parts: payment to the edge node and a normal invoice to the merchant. A rough idea has been shown below:
 ![3.jpg](img/3.jpg)
