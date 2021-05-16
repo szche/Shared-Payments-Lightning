@@ -28,7 +28,7 @@ Of course Bob should have the unencrypted version of the Lightning packet to be 
 
 What's also interesing is the fact that payment confirmation on Alice's end also means that Bob payed his share. Bob or Alice can't lie about the state of their payment since it's directly connected with the payment of the other party. This non-equivocation property could possibly be used in decentralized trading application (shared liquidity pools?).
 
-## What's next? (Proof-of-Concept)
+## What's next?
 Here's where I discovered a little problem.
 As per [BOLT #4](https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md) the forwarding amount can't be higher than the incoming hltc substracted by the routing fee:
 > **amt_to_forward**: The amount, in millisatoshis, to forward to the next receiving peer specified within the routing information.
